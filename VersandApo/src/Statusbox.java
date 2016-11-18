@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Image;
 
 import javax.swing.Icon;
@@ -13,6 +14,8 @@ public class Statusbox extends JPanel
 	JButton auftraege = new JButton("<html><font color=red size=+3>???</font><font color=black size=+1>+???</font></html>");
 	JButton connected = new JButton("<html>???</html>");
 	JButton time = new JButton ("XX:XX");
+	JButton printOrders = new JButton ("Drucken");
+	
 	Icon smiley0;
 	Icon smiley1;
 	Icon smiley2;
@@ -26,6 +29,7 @@ public class Statusbox extends JPanel
 		this.add(auftraege, BorderLayout.EAST);
 		this.add(connected, BorderLayout.WEST);
 		this.add(time, BorderLayout.CENTER);
+		this.add(printOrders,BorderLayout.NORTH);
 		setConnected(0);
 		setAuftraege (0,0);
 	}

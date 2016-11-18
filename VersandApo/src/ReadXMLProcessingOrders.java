@@ -1,19 +1,21 @@
-
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
+import javax.swing.JButton;
 import javax.xml.parsers.*;
 import java.io.*;
 
 
-public class ReadXMLNumberProcessingOrders {
-	
+public class ReadXMLProcessingOrders {
+
+
 	Document document;
 	Element root;
 	int intProcessing =-99;
 	int intPending = -99;
+	JButton[] buttons;
 	
-	ReadXMLNumberProcessingOrders(String inString) 
+	ReadXMLProcessingOrders(String inString) 
 	{
 		DocumentBuilderFactory factory =
 		DocumentBuilderFactory.newInstance();
@@ -41,21 +43,19 @@ public class ReadXMLNumberProcessingOrders {
 		intPending = Integer.valueOf(eElement.getElementsByTagName("pending").item(0).getTextContent());
         
 	}
+	
+	
+	public JButton[] getButtons ()
+	{
+		
+		return buttons;
+		
+	}
 
 	
 	
-	public int getNumberProcessing() 
-	{
-		
-		return intProcessing;
-				
-	}
 	
 	
-	public int getNumberPending () 
-	{
-		return intPending;
-		
-	}
-	
+
+
 }
