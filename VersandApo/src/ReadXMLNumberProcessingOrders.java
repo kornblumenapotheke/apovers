@@ -33,7 +33,7 @@ public class ReadXMLNumberProcessingOrders {
 		root = document.getDocumentElement();
 		
 		NodeList nList = document.getElementsByTagName("xml");
-		System.out.println(nList.getLength());
+		
 		Node node = nList.item(0);
 		Element eElement = (Element)node;
 		

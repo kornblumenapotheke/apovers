@@ -4,6 +4,7 @@ import org.xml.sax.SAXException;
 import javax.swing.JButton;
 import javax.xml.parsers.*;
 import java.io.*;
+import java.util.ArrayList;
 
 
 public class ReadXMLProcessingOrders {
@@ -13,7 +14,7 @@ public class ReadXMLProcessingOrders {
 	Element root;
 	int intProcessing =-99;
 	int intPending = -99;
-	JButton[] buttons;
+	ArrayList buttons = new ArrayList();
 	
 	ReadXMLProcessingOrders(String inString) 
 	{
@@ -28,24 +29,39 @@ public class ReadXMLProcessingOrders {
 		}
 		try {
 			document = builder.parse(inString);
+			
 		} catch (SAXException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		root = document.getDocumentElement();
 		
-		NodeList nList = document.getElementsByTagName("xml");
-		System.out.println(nList.getLength());
-		Node node = nList.item(0);
-		Element eElement = (Element)node;
+		NodeList nList = document.getElementsByTagName("order");
 		
-		intProcessing = Integer.valueOf(eElement.getElementsByTagName("processing").item(0).getTextContent());
-		intPending = Integer.valueOf(eElement.getElementsByTagName("pending").item(0).getTextContent());
+		
+		// Arbeite alle Orders durch
+		for (int i = 0; i < nList.getLength();i++)
+		{
+			Node node = nList.item(i);
+			Element eElement = (Element)node;			
+			
+			eElement.getElementsByTagName("item").getLength();
+			for (int j=0;j<eElement.getElementsByTagName("item").getLength();j++)
+			{
+				String orderItem = eElement.getElementsByTagName("item").item(j).getTextContent();
+				String orderQuantity = eElement.getElementsByTagName("quantity").item(j).getTextContent();
+				String orderPzn = eElement.getElementsByTagName("pzn").item(j).getTextContent();
+			//Erzeuge daraus Button
+				buttons.add(new JOrderButton (orderPzn, orderItem, orderQuantity));
+			}
+		}
+		
+		
         
 	}
 	
 	
-	public JButton[] getButtons ()
+	public ArrayList getButtons ()
 	{
 		
 		return buttons;

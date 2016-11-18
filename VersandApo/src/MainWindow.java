@@ -1,5 +1,5 @@
 import java.awt.BorderLayout;
-import info.hebein.versandapo.*;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -19,6 +19,7 @@ public class MainWindow extends JFrame
         new ConnectionChecker(getStatusbox()).start(); //verknüpfe Verbindungschecker mit Button
         new NewOrdersChecker (getStatusbox()).start();
         new TimeChecker(getStatusbox()).start();
+        new OrdersChecker (getOrdersBox()).start();
         
 	}
 	
@@ -27,6 +28,11 @@ public class MainWindow extends JFrame
 	public Statusbox getStatusbox()
 	{
 		return statusbox;
+	}
+	
+	public OrdersBox getOrdersBox()
+	{
+		return ordersbox;
 	}
 	
 }
